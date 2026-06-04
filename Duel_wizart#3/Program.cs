@@ -1,2 +1,87 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿Wizard wizardA = new Wizard("Aryzz", 20);
+Wizard wizardB = new Wizard("Kokomi", 30);
+
+Console.WriteLine("Permainan Dimulai...\n");
+Console.WriteLine("Statistik Awal");
+wizardA.ShowStats();
+wizardB.ShowStats();
+
+string pilihan;
+
+while (true)
+{
+
+    Console.Clear();
+
+    Console.WriteLine($"1. {wizardA.Name} menyerang {wizardB.Name}");
+    Console.WriteLine($"2. {wizardB.Name} menyerang {wizardA.Name}");
+    Console.WriteLine($"3. {wizardA.Name} melakukan heal");
+
+
+
+
+
+    Console.ReadLine();
+}
+
+//wizardA.Attack(wizardB);
+//wizardB.Attack(wizardA);
+//wizardA.Attack(wizardB);
+//wizardB.Heal();
+
+wizardA.ShowStats();
+wizardB.ShowStats();
+
+Console.WriteLine("Permainan Selesaiiii CIHUYYYYY");
+
+public class Wizard
+{
+    //Field
+    public string Name;
+    public int Energy;
+    public int Damage;
+
+
+    //Constructor
+    public Wizard(string name, int damage)
+    {
+        Name = name;
+        Energy = 100;
+        Damage = damage;
+    }
+
+    //Deklarasi Method
+    public void ShowStats()
+    {
+        Console.WriteLine($"Name: {Name}");
+        Console.WriteLine($"Energy: {Energy}\n");
+    }
+
+    public void Attack(Wizard enemyObj)
+    {
+        enemyObj.Energy -= Damage;
+        Console.WriteLine($"{Name} menyerang {enemyObj.Name}");
+        Console.WriteLine($"Sisa energy {enemyObj.Name}: {enemyObj.Energy}\n");
+    }
+
+    //Method Heal
+    public void Heal()
+    {
+        if (Energy >= 100)
+        {
+            Console.WriteLine($"Gagal melakukan heal. Energi sudah full");
+        }
+        else
+        {
+            if (Energy > 95)
+            {
+                Energy = 100;
+            }
+            else
+            {
+                Energy += 10;
+            }
+            Console.WriteLine($"{Name} melakukan heal. Energi sekarang menjadi: {Energy}");
+        }
+    }
+}
